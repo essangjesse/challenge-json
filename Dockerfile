@@ -39,6 +39,10 @@ RUN apt-get install -y \
     php7.4-xml \
     php7.4-bcmath
 
+#------------- Override Default php.ini Config ----------------------------------------------------
+
+COPY ./php-override.ini /etc/php/7.4/fpm/conf.d/
+
 # Install NPM and Node.js
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get install -y nodejs
