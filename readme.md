@@ -43,7 +43,7 @@ Ensure that you have a MySQL server instance running on your local machine. Lear
 4. Execute the following command:
 
     ```
-    $ docker-compose up -d
+    $ docker compose up -d
     ```
 
     This will download/build all the required images and start the stack containers. It usually takes a bit of time, so grab a cup of coffee.
@@ -62,10 +62,16 @@ Ensure that you have a MySQL server instance running on your local machine. Lear
     $ cp .env.example .env
     ```
 
-9. In the `.env` file, configure your database connection parameters.
+9. To generate your app key, run:
 
-10. In your terminal, run `php artisan migrate` to migrate existing tables to your database.
+    ```
+    $ php artisan key:generate
+    ```
+
+10. In the `.env` file, configure your database connection parameters and set the **QUEUE_CONNECTION** parameter to `database`.
+
+11. In your terminal, run `php artisan migrate` to migrate existing tables to your database.
 
 ### **Postman Documentation**
 
-[Postman Documentation](https://documenter.getpostman.com/view/14479887/TzeXk7Zd)
+Refer to the [Postman Documentation](https://documenter.getpostman.com/view/14479887/TzeXk7Zd) for instructions on how to consume the endpoints.
