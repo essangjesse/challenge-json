@@ -75,3 +75,17 @@ Ensure that you have a MySQL server instance running on your local machine. Lear
 ### **Postman Documentation**
 
 Refer to the [Postman Documentation](https://documenter.getpostman.com/view/14479887/TzeXk7Zd) for instructions on how to consume the endpoints.
+
+### **Bonus Challenge**
+
+Question: **What happens when the source file grows to, say, 500 times the given size?**
+
+The server would have to be configured to accommodate such an upload, otherwise, a **PostTooLargeException** would be thrown. A php-override.ini file is placed in the root directory for easy configuration of the **php.ini** file.
+
+Question: **Is your solution easily adjustable to different source data formats (CSV, XML, etc.)?**
+
+Yes, the solution can easily be adjusted to handle different file formats. The **UploadController** first checks for the file mime type. You can add new mime types as conditions in the switch statement that follows, and define methods in the **HandlesFiles** trait for parsing the files, which can then be called from within the switch statement.
+
+Question:  **Say that another data filter would be the requirement that the credit card number must have three identical digits in sequence. How would you tackle this?**
+
+This can easily be handled in the **HandlesImports** trait. A method will simply be created for example **passesCreditCardCriterion** in which the conditions for meeting the requirement will be defined. This method will accept the credit card number as an argument. It can then be called in the **passesCriteria** method to ensure the record passes this new requirement before it is imported to the database.
